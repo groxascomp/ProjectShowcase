@@ -22,7 +22,7 @@ public class SkillServiceImpl implements SkillService{
             return newSkill;
         });
 
-        skill.setLanguagesSkills(request.getLanguageSkills());
+        skill.setLanguagesSkills(request.getLanguagesSkills());
         skill.setFrontendSkills(request.getFrontendSkills());
         skill.setBackendSkills(request.getBackendSkills());
         skill.setToolsSkills(request.getToolsSkills());
@@ -30,7 +30,7 @@ public class SkillServiceImpl implements SkillService{
         Skill saved = skillRepository.save(skill);
 
         SkillResponse response = new SkillResponse();
-        response.setLanguageSkills(saved.getLanguagesSkills());
+        response.setLanguagesSkills(saved.getLanguagesSkills());
         response.setFrontendSkills(saved.getFrontendSkills());
         response.setBackendSkills(saved.getBackendSkills());
         response.setToolsSkills(saved.getToolsSkills());
@@ -51,7 +51,7 @@ public class SkillServiceImpl implements SkillService{
             return newSkill;
         });
 
-        skill.setLanguagesSkills(request.getLanguageSkills());
+        skill.setLanguagesSkills(request.getLanguagesSkills());
         skill.setFrontendSkills(request.getFrontendSkills());
         skill.setBackendSkills(request.getBackendSkills());
         skill.setToolsSkills(request.getToolsSkills());

@@ -1,26 +1,26 @@
 package com.gian.showcase.dto.skilldto;
 
 public class SkillResponse {
-    private String languageSkills;
+    private String languagesSkills;
     private String frontendSkills;
     private String backendSkills;
     private String toolsSkills;
 
     public SkillResponse() {}
 
-    public SkillResponse(String languageSkills, String frontendSkills, String backendSkills, String toolsSkills) {
-        this.languageSkills = languageSkills;
+    public SkillResponse(String languagesSkills, String frontendSkills, String backendSkills, String toolsSkills) {
+        this.languagesSkills = languagesSkills;
         this.frontendSkills = frontendSkills;
         this.backendSkills = backendSkills;
         this.toolsSkills = toolsSkills;
     }
 
-    public String getLanguageSkills() {
-        return languageSkills;
+    public String getLanguagesSkills() {
+        return languagesSkills;
     }
 
-    public void setLanguageSkills(String languageSkills) {
-        this.languageSkills = languageSkills;
+    public void setLanguagesSkills(String languagesSkills) {
+        this.languagesSkills = languagesSkills;
     }
 
     public String getFrontendSkills() {

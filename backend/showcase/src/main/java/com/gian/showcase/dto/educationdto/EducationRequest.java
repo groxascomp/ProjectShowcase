@@ -1,13 +1,6 @@
 package com.gian.showcase.dto.educationdto;
 
 public class EducationRequest {
-    /*id_edu
-course_edu
-school_edu
-proudof_edu
-start_edu
-end_edu
- */
     private String courseEdu;
     private String schoolEdu;
     private String proudofEdu;

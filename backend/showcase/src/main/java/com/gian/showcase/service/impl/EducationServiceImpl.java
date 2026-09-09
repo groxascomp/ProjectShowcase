@@ -11,13 +11,6 @@ import com.gian.showcase.model.entity.Education;
 import com.gian.showcase.repository.EducationRepository;
 import com.gian.showcase.service.EducationService;
 
-/*course_edu
-school_edu
-proudof_edu
-start_edu
-end_edu
- */
-
 @Service 
 public class EducationServiceImpl implements EducationService{
     @Autowired 
