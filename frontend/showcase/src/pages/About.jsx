@@ -185,7 +185,7 @@ year_cb
           <section>
             <div className="mb-10 mt-20">
               <p className="text-sm tracking-[0.3em] uppercase mb-2 text-purple-500">
-                // who i am
+                // what I use
               </p>
               <h3 className="text-3xl font-bold text-white mb-10">
                 Skills & Tools
