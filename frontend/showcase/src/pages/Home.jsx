@@ -57,7 +57,7 @@ function Home() {
         <section>
             <h1 className="text-gray-400 text-base mb-12 flex justify-center">
                 25 years old Software Developer at
-                <span className="text-purple-500 pl-1.5 pr-1.5 uppercase"> ACCENTURE </span> Philippines
+                <span className="text-purple-500 pl-1.5 pr-1.5 font-semibold tracking-wider uppercase"> ACCENTURE </span> Philippines
             </h1>
         </section>
         

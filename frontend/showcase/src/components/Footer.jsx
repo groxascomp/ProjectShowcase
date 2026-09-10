@@ -20,7 +20,7 @@ function Footer(){
             </Link>
         </div>
 
-        <nav className="hero-middle flex gap-9.5 uppercase" style={{ paddingRight: "20px" }}>
+        <nav className="hero-middle flex gap-9.5 uppercase tracking-[0.1em]">
             <NavLink 
                 to="/about" 
                 className={({ isActive }) =>

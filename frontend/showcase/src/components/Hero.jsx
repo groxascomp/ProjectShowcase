@@ -15,12 +15,12 @@ function Hero() {
                 
                 <div>
                     <h1 className="text-white font-semibold text-base tracking-wide">Gian Exequiel G. Roxas</h1>
-                    <p className='text-purple-500 font-normal text-sm text-base tracking-wide'> Software Engineer</p>
+                    <p className='text-purple-500 font-normal text-sm tracking-wide'> Software Engineer</p>
                 </div>
             </Link>
         </div>
 
-        <nav className="hero-middle flex gap-9.5 " style={{ paddingRight: "20px" }}>
+        <nav className="hero-middle flex gap-9.5 tracking-[0.1em]">
             <NavLink 
                 to="/about" 
                 className={({ isActive }) =>
