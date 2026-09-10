@@ -1,17 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 
-:root {
-  --font-family: 'Poppins', sans-serif;
-  --bg-dark: #0f172a;
-  --bg-soft: rgba(15, 23, 42, 0.75);
-  --panel: rgba(255, 255, 255, 0.1);
-  --panel-border: rgba(255, 255, 255, 0.2);
-  --white: #ffffff;
-  --muted: #d7e0ee;
-  --primary: #7dd3fc;
-  --primary-strong: #38bdf8;
-  --shadow: 0 18px 50px rgba(15, 23, 42, 0.3);
+* {
+  scrollbar-width: none;
 }
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 80% 20%, #1a0a2e 0%, #0a0a0f 60%);
+  color: #f5f3ff;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+
 
 
 
