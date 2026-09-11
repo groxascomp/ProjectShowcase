@@ -1,5 +1,7 @@
 package com.gian.showcase.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +59,11 @@ public class LinkServiceImpl implements LinkService{
 
         return response;
 
+    }
+
+    @Override
+    public List<Link> getAllLinks(){
+        return linkRepository.findAll();
     }
 
     @Override 

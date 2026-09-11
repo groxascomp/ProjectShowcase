@@ -1,5 +1,7 @@
 package com.gian.showcase.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +54,11 @@ public class AboutServiceImpl implements AboutService {
 
         return response;
 
+    }
+
+    @Override
+    public List<About> getAllAbouts(){
+        return aboutRepository.findAll();
     }
 
 

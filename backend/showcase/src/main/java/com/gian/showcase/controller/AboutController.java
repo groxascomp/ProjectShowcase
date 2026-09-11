@@ -1,6 +1,9 @@
 package com.gian.showcase.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +27,11 @@ public class AboutController {
     public AboutResponse createAbout(@RequestBody AboutRequest request){
         return service.createAbout(request);
 
+    }
+
+    @GetMapping
+    public List<About> getAllAbouts(){
+        return service.getAllAbouts();
     }
 
     @PutMapping("/{id}")
