@@ -34,7 +34,7 @@ function Contact() {
               Contact
             </h2>
             <div>
-              <p class="text-gray-400 leading-relaxed mb-12 pt-10">
+              <p className="text-gray-400 leading-relaxed mb-12 pt-10">
                 I'm always open to new opportunities, collaborations, and
                 interesting conversations. Whether you have a project in mind or
                 just want to say hi — reach out through any of the channels

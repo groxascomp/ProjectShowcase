@@ -124,12 +124,12 @@ function Home() {
     <>
       <Hero />
       <section>
-        <p class="text-gray-400 text-lg mb-4 tracking-widest font-light text-center pt-35">
+        <p className="text-gray-400 text-lg mb-4 tracking-widest font-light text-center pt-35">
           Glad you stopped by.
         </p>
       </section>
       <section>
-        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 text-center">
+        <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-center">
           I am Gian Exequiel <span className="text-purple-500">Roxas</span>{" "}
         </h1>
       </section>
@@ -183,8 +183,8 @@ function Home() {
 
       {/* Projects */}
 
-      <section class=" pt-24 px-6 md:px-16 max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-14">
+      <section className=" pt-24 px-6 md:px-16 max-w-6xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-14">
           Project
           <span className="text-purple-500 pl-5">Showcase</span>
         </h2>
@@ -239,8 +239,8 @@ function Home() {
         MORE PROJECT HERE <span className="text-purple-500">▶</span>
       </NavLink>
 
-      <section class="pt-25 px-6 md:px-16 max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-14">
+      <section className="pt-25 px-6 md:px-16 max-w-6xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-14">
           Certification and
           <span className="text-purple-500 pl-5">Badge</span>
         </h2>
@@ -264,11 +264,11 @@ function Home() {
                 </span>
               </div>
               <div className="w-3/4">
-                <div class="text-white text-sm font-semibold leading-snug mb-1 group-hover:text-purple-200 transition-colors duration-200">
+                <div className="text-white text-sm font-semibold leading-snug mb-1 group-hover:text-purple-200 transition-colors duration-200">
                   {p.name_cb}
                 </div>
-                <div class="text-xs text-gray-500">{p.company_cb}</div>
-                <div class="text-xs font-mono mt-1 text-purple-500">
+                <div className="text-xs text-gray-500">{p.company_cb}</div>
+                <div className="text-xs font-mono mt-1 text-purple-500">
                   {p.year_cb}
                 </div>
               </div>

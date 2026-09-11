@@ -24,8 +24,7 @@ function Projects() {
       name_projects: "DevTrack",
       stack_projects: "React, Node.js, PostgreSQ, LAWS",
       year_project: "2024",
-      github_projects:
-        "https://github.com/groxascomp/PetF_PetFoodManager_React",
+      github_projects: "not available",
       description_projects:
         "A large-scale internal tool for Accenture clients featuring real-time data dashboards, role-based access, and automated reporting pipelines built with React, Node.js, and PostgreSQL.",
     },
@@ -136,9 +135,21 @@ function Projects() {
 
                   <div>
                     <a
-                      href={p.github_projects}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={
+                        p.github_projects === "not available"
+                          ? "/sorry"
+                          : p.github_projects
+                      }
+                      target={
+                        p.github_projects === "not available"
+                          ? undefined
+                          : "_blank"
+                      }
+                      rel={
+                        p.github_projects === "not available"
+                          ? undefined
+                          : "noopener noreferrer"
+                      }
                       className="pl-4 pt-9 pb-6 inline-flex items-center text-purple-500 font-semibold uppercase tracking-widest text-xs hover:text-purple-400 transition-colors duration-300"
                     >
                       View Project →

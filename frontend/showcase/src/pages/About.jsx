@@ -79,12 +79,14 @@ year_cb
 
           <div className="flex gap-8 justify-center">
             <div className="w-1/2 ">
-              <img
-                src={profileImage}
-                alt="Gian Exequiel Roxas"
-                className="w-75 h-75 md:w-45 md:h-45 object-cover rounded-full border-[3px] border-purple-500 ]"
-              />
-              <div className="space-y-4 text-gray-300 leading-relaxed pt-6">
+              <div className="flex justify-center items-center">
+                <img
+                  src={profileImage}
+                  alt="Gian Exequiel Roxas"
+                  className=" w-40 h-40 object-cover rounded-full border-[3px] border-purple-500 ]"
+                />
+              </div>
+              <div className="space-y-4 text-gray-300 leading-relaxed pt-6 text-justify ">
                 <p>
                   {" "}
                   Hi! I'm
@@ -98,8 +100,8 @@ year_cb
                     {" "}
                     Accenture Philippines{" "}
                   </span>
-                  Accenture Philippines, where I build scalable software
-                  solutions for enterprise clients.
+                  , where I build scalable software solutions for enterprise
+                  clients.
                 </p>
                 <p>
                   {" "}
@@ -316,11 +318,11 @@ year_cb
                     </span>
                   </div>
                   <div className="w-3/4">
-                    <div class="text-white text-sm font-semibold leading-snug mb-1 group-hover:text-purple-200 transition-colors duration-200">
+                    <div className="text-white text-sm font-semibold leading-snug mb-1 group-hover:text-purple-200 transition-colors duration-200">
                       {p.name_cb}
                     </div>
-                    <div class="text-xs text-gray-500">{p.company_cb}</div>
-                    <div class="text-xs font-mono mt-1 text-purple-500">
+                    <div className="text-xs text-gray-500">{p.company_cb}</div>
+                    <div className="text-xs font-mono mt-1 text-purple-500">
                       {p.year_cb}
                     </div>
                   </div>
