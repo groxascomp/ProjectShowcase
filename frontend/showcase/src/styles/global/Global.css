@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
-@import 'tailwindcss';
-@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 
 * {
   scrollbar-width: none;
@@ -19,14 +19,5 @@ body {
   min-height: 100vh;
   background: radial-gradient(ellipse at 80% 20%, #1a0a2e 0%, #0a0a0f 60%);
   color: #f5f3ff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-
-
-
-
-
-
-
-
-

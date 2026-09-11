@@ -1,61 +1,52 @@
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
+import { getEducations, getExperience } from "../services/api";
+import ExperienceLoading from "../components/loading/ExperienceLoading";
+import ExperienceError from "../components/errorpage/ExperienceError";
 
 function Experience() {
-  const exp = [
-    {
-      id_exp: 1,
-      role_exp: "Full Stack Developer",
-      company_exp: "Accenture Philippines",
-      responsibility_exp:
-        "A software engineer designs, builds, tests, and maintains software systems — their work goes far beyond just writing code. They solve problems, collaborate with teams, and ensure applications are scalable, secure, and user-friendly. Developing enterprise-grade web applications for financial services and telecommunications clients. Leading front-end architecture decisions and collaborating with cross-functional teams across Manila and Singapore.",
-      stack_exp: "React.js, Node.js, Express.js, MongoDB, TailwindCSS",
-      start_exp: "2024",
-      end_exp: "2026",
-      type_exp: "Full-time",
-    },
-    {
-      id_exp: 2,
-      role_exp: "Call Center",
-      company_exp: "Foundever Philippines",
-      responsibility_exp:
-        "Developing enterprise-grade web applications for financial services and telecommunications clients. Leading front-end architecture decisions and collaborating with cross-functional teams across Manila and Singapore.",
-      stack_exp: "React.js, Node.js, Express.js, MongoDB, TailwindCSS",
-      start_exp: "2024",
-      end_exp: "2026",
-      type_exp: "Full-time",
-    },
-    {
-      id_exp: 3,
-      role_exp: "Call Center",
-      company_exp: "Foundever Philippines",
-      responsibility_exp:
-        "Developing enterprise-grade web applications for financial services and telecommunications clients. Leading front-end architecture decisions and collaborating with cross-functional teams across Manila and Singapore.",
-      stack_exp: "React.js, Node.js, Express.js, MongoDB, TailwindCSS",
-      start_exp: "2024",
-      end_exp: "2026",
-      type_exp: "Full-time",
-    },
-  ];
+  const [exp, setExp] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const edu = [
-    {
-      id_edu: 1,
-      course_edu: "Bachelor of Science in Computer Engineering",
-      school_edu: "Polytechnic University of the Philippines – Sta. Mesa",
-      proudof_edu: "Dean’s List, GWA 1.75",
-      start_edu: "2019",
-      end_edu: "2023",
-    },
-    {
-      id_edu: 2,
-      course_edu: "Information Computer Technology",
-      school_edu: "Arellano University – Pasig",
-      proudof_edu: "Graduate with Honors and some awards",
-      start_edu: "2019",
-      end_edu: "2023",
-    },
-  ];
+  useEffect(() => {
+    getExperience()
+      .then(setExp)
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const orderedExperiences = [...exp].reverse();
+
+  const [edu, setEdu] = useState([]);
+  const [loadingEdu, setLoadingEdu] = useState(true);
+  const [errorEdu, setErrorEdu] = useState("");
+
+  useEffect(() => {
+    getEducations()
+      .then(setEdu)
+      .catch((error) => setErrorEdu(error.message))
+      .finally(() => setLoadingEdu(false));
+  }, []);
+
+  const orderedEducation = [...edu].reverse();
+
+  if (loading || loadingEdu) {
+    return (
+      <>
+        <ExperienceLoading />
+      </>
+    );
+  }
+
+  if (error || errorEdu) {
+    return (
+      <>
+        <ExperienceError />
+      </>
+    );
+  }
 
   return (
     <>
@@ -76,7 +67,7 @@ function Experience() {
               className="absolute bottom-3 left-2 top-3 w-px bg-white/10"
             />
 
-            {exp.map((p) => (
+            {orderedExperiences.map((p) => (
               <article key={p.id_exp} className="relative pb-16 last:pb-0">
                 <span
                   aria-hidden="true"
@@ -105,7 +96,7 @@ function Experience() {
                   {p.responsibility_exp}
                 </div>
                 <div className="flex flex-wrap gap-3 pr-4">
-                  {p.stack_exp.split(",").map((tech, index) => (
+                  {(p.stack_exp || "").split(",").map((tech, index) => (
                     <span
                       key={index}
                       className="inline-block bg-gray-900 text-gray-500 font-mono border border-white/10 text-xs px-2"
@@ -135,7 +126,7 @@ function Experience() {
               className="absolute bottom-3 left-2 top-3 w-px bg-white/10"
             />
 
-            {edu.map((p) => (
+            {orderedEducation.map((p) => (
               <article key={p.id_edu} className="relative pb-12 last:pb-0">
                 <span
                   aria-hidden="true"

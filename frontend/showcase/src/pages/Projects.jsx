@@ -1,61 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
+import { getProjects } from "../services/api";
+import ErrorComponents from "../components/ErrorComponents";
+import ProjectError from "../components/errorpage/ProjectsError";
+import ProjectsLoading from "../components/loading/ProjectsLoading";
 
 function Projects() {
-  const [active, setActive] = useState("ALL");
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const categories = ["ALL", "FULL STACK", "FRONTEND", "BACKEND", "IOT"];
-  const projects = [
-    {
-      id_project: 4,
-      tech_project: "FULL STACK",
-      name_projects: "Enterprise Resource Portal",
-      stack_projects: "React, Node.js, PostgreSQ, LAWS",
-      year_project: "2024",
-      github_projects:
-        "https://github.com/groxascomp/PetF_PetFoodManager_React",
-      description_projects:
-        "A large-scale internal tool for Accenture clients featuring real-time data dashboards, role-based access, and automated reporting pipelines built with React, Node.js, and PostgreSQL.",
-    },
-    {
-      id_project: 2,
-      tech_project: "BACKEND",
-      name_projects: "DevTrack",
-      stack_projects: "React, Node.js, PostgreSQ, LAWS",
-      year_project: "2024",
-      github_projects: "not available",
-      description_projects:
-        "A large-scale internal tool for Accenture clients featuring real-time data dashboards, role-based access, and automated reporting pipelines built with React, Node.js, and PostgreSQL.",
-    },
-    {
-      id_project: 3,
-      tech_project: "IOT",
-      name_projects: "DevTrack FullStack",
-      stack_projects: "React, Node.js, PostgreSQ, LAWS",
-      year_project: "2024",
-      github_projects:
-        "https://github.com/groxascomp/PetF_PetFoodManager_React",
-      description_projects:
-        "A large-scale internal tool for Accenture clients featuring real-time data dashboards, role-based access, and automated reporting pipelines built with React, Node.js, and PostgreSQL.",
-    },
-    {
-      id_project: 5,
-      tech_project: "IOT",
-      name_projects: "DevTrAAAAack FullStack",
-      stack_projects: "React, Node.js, PostgreSQ, LAWS",
-      year_project: "2024",
-      github_projects:
-        "https://github.com/groxascomp/PetF_PetFoodManager_React",
-      description_projects:
-        "A large-scale internal tool for Accenture clients featuring real-time data dashboards, role-based access, and automated reporting pipelines built with React, Node.js, and PostgreSQL.",
-    },
-  ];
+  useEffect(() => {
+    getProjects()
+      .then(setProjects)
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const [active, setActive] = useState("ALL");
+  const categories = ["ALL", "Full Stack", "FrontEnd", "BackEnd", "IOT"];
 
   const filteredProjects =
     active === "ALL"
       ? projects
       : projects.filter((p) => p.tech_project === active);
+
+  if (loading) {
+    return (
+      <>
+        <ProjectsLoading />
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <ProjectError />
+      </>
+    );
+  }
 
   return (
     <>
@@ -71,8 +56,6 @@ function Projects() {
               Projects
             </h2>
           </div>
-
-          {/*--------------------------------------- */}
 
           <section>
             <div className="flex flex-wrap gap-2 text-xs">
@@ -123,7 +106,7 @@ function Projects() {
                   </div>
 
                   <div className="flex flex-wrap gap-3 pl-4 pr-4 pt-2.5">
-                    {p.stack_projects.split(",").map((tech, index) => (
+                    {(p.stack_projects || "").split(",").map((tech, index) => (
                       <span
                         key={index}
                         className="inline-block bg-gray-900 text-gray-500 font-mono border border-white/10 text-xs px-2"

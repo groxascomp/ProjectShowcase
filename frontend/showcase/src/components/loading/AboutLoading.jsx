@@ -1,119 +1,11 @@
-import Footer from "../components/Footer";
-import Hero from "../components/Hero";
-import profileImage from "../assets/1x1/1x1.JPG";
-import {
-  getAbouts,
-  getCert,
-  getEducations,
-  getLinks,
-  getSkills,
-} from "../services/api";
-import { useEffect, useState } from "react";
-import AboutError from "../components/errorpage/AboutError";
-import AboutLoading from "../components/loading/AboutLoading";
-
-const iconImages = import.meta.glob("../assets/icons/*.png", {
-  eager: true,
-  import: "default",
-  query: "?url",
-});
-
-function About() {
-  
-  
-  const [about, setAbout] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  
-
-  useEffect(() => {
-    getAbouts()
-      .then((aboutData) => {
-        setAbout(aboutData[0] || {});
-      })
-      .catch((error) => setError(error.message))
-      .finally(() => setLoading(false));
-  }, []);
-
-  const [edu, setEdu] = useState({});
-  const [loadingedu, setLoadingedu] = useState(true);
-  const [erroredu, setErroredu] = useState("");
-
-  useEffect(() => {
-  getEducations()
-    .then((eduData) => {
-      const lastEducation = eduData[eduData.length - 1];
-      setEdu(lastEducation || {});
-    })
-    .catch((error) => setErroredu(error.message))
-    .finally(() => setLoadingedu(false));
-}, []);
-
-  const [link, setLink] = useState({});
-  const [loadinglink, setLoadinglink] = useState(true);
-  const [errorlink, setErrorlink] = useState("");
-  const [skills, setSkills] = useState({});
-  const [loadingskills, setLoadingskills] = useState(true);
-  const [errorskills, setErrorskills] = useState("");
-
-useEffect(() => {
-  getLinks()
-    .then((linkData) => {
-      const lastLink = linkData[linkData.length - 1];
-      setLink(lastLink || {});
-    })
-    .catch((error) => setErrorlink(error.message))
-    .finally(() => setLoadinglink(false));
-}, []);
-
-  useEffect(() => {
-    getSkills()
-      .then((skillsData) => {
-        setSkills(skillsData[0] || {});
-      })
-      .catch((error) => setErrorskills(error.message))
-      .finally(() => setLoadingskills(false));
-  }, []);
+import Footer from "../Footer";
+import Hero from "../Hero";
 
 
-
-  
-const [certs, setCerts] = useState([]);
-  const [loadingcert, setLoadingcert] = useState(true);
-  const [errorcert, setErrorcert] = useState("");
-
-  useEffect(() => {
-    getCert()
-      .then(setCerts)
-      .catch((error) => setErrorcert(error.message))
-      .finally(() => setLoadingcert(false));
-  }, []);
-    
-
-
-
-
-  if (loading || loadingedu || loadinglink || loadingskills || loadingcert) {
-    return (
-      <>
-        <AboutLoading/>
-      </>
-    );
-  }
-
-  if (error || erroredu || errorlink || errorskills || errorcert) {
-    return (
-      <>
-        <AboutError/>
-      </>
-    );
-  }
-
-
-
-  return (
-    <>
-      <Hero />
+function AboutLoading(){
+    return(
+        <>
+            <Hero />
 
       <section className="flex-1">
         <section className="min-h-screen pt-10 pb-20 px-6 md:px-16 max-w-6xl mx-auto">
@@ -130,20 +22,23 @@ const [certs, setCerts] = useState([]);
             <div className="w-1/2 ">
               <div className="flex justify-center items-center">
                 <img
-                  src={profileImage}
-                  alt="Gian Exequiel Roxas"
+                 
                   className=" w-40 h-40 object-cover rounded-full border-[3px] border-purple-500 ]"
                 />
               </div>
               <div className="space-y-4 text-gray-300 leading-relaxed pt-6 text-justify ">
                 <p>
-                  {about.line1_about}
-                </p>
-                <p>
-                  {about.line2_about}
-                </p>
-                <p>
-                  {about.line3_about}
+                  <div className="h-5 w-120 mb-4 bg-gray-800 rounded animate-pulse"></div>
+                  <div className="h-5 w-120 mb-4 bg-gray-800 rounded animate-pulse"></div>
+                  <div className="h-5 w-120 mb-4 bg-gray-800 rounded animate-pulse"></div>
+                  <div className="h-5 w-120 mb-4 bg-gray-800 rounded animate-pulse"></div>
+                  <div className="h-5 w-120 mb-4 bg-gray-800 rounded animate-pulse"></div>
+                  <div className="h-5 w-120 mb-4 bg-gray-800 rounded animate-pulse"></div>
+                  <div className="h-5 w-120 mb-4 bg-gray-800 rounded animate-pulse"></div>
+                  <div className="h-5 w-120 bg-gray-800 rounded animate-pulse"></div>
+                  
+                  
+               
                 </p>
               </div>
             </div>
@@ -154,7 +49,7 @@ const [certs, setCerts] = useState([]);
                   Full Name
                 </span>
                 <span className="text-white text-sm">
-                  {about.firstname_about} {about.lastname_about}
+                  <div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div>
                 </span>
               </div>
 
@@ -162,7 +57,7 @@ const [certs, setCerts] = useState([]);
                 <span className="text-xs tracking-widest uppercase font-medium w-32 shrink-0 mt-0.5 text-purple-500">
                   Age
                 </span>
-                <span className="text-white text-sm">{about.age_about} Years Old</span>
+                <span className="text-white text-sm"><div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div></span>
               </div>
 
               <div className="flex items-start gap-4 border-b border-white/10 pb-4">
@@ -170,7 +65,7 @@ const [certs, setCerts] = useState([]);
                   Location
                 </span>
                 <span className="text-white text-sm">
-                  {about.location_about}
+                  <div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div>
                 </span>
               </div>
 
@@ -179,7 +74,7 @@ const [certs, setCerts] = useState([]);
                   Current Role
                 </span>
                 <span className="text-white text-sm">
-                  {about.currentrole_about} @ {about.currentcompany_about}
+                  <div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div>
                 </span>
               </div>
 
@@ -188,7 +83,7 @@ const [certs, setCerts] = useState([]);
                   Education
                 </span>
                 <span className="text-white text-sm">
-                  {edu.course_edu}
+                  <div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div>
                 </span>
               </div>
 
@@ -197,13 +92,13 @@ const [certs, setCerts] = useState([]);
                   Availability
                 </span>
                 <span className="text-white text-sm">
-                  {about.availability_about}
+                  <div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div>
                 </span>
               </div>
 
               <div className="flex justify-center">
                 <a
-                  href={link.cv_links}
+                  
                   target="_blank"
                   className=" mt-12 flex w-80 items-center justify-center gap-3 border border-white/30 px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:border-purple-500 hover:bg-purple-950/40"
                 >
@@ -224,29 +119,24 @@ const [certs, setCerts] = useState([]);
             </div>
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                ["LANGUAGES", skills.language_skills],
-                ["FRONTEND", skills.frontend_skills],
-                ["BACKEND", skills.backend_skills],
-                ["TOOLS", skills.tools_skills],
-              ].map(([title, values]) => (
+              
                 <div
-                  key={title}
+                  
                   className="border border-white/10 bg-[rgb(17,17,24)] p-5 transition-colors duration-200 hover:border-purple-700"
                 >
                   <h3 className="text-sm font-semibold tracking-[0.15em] text-purple-500">
-                    {title}
+                    <div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div>
                   </h3>
                   <div className="list-disc list-inside text-gray-300">
-                    {(values || "").split(",").map((value) => (
-                      <p key={value.trim()} className="pt-2 text-sm">
+                    
+                      <p  className="pt-2 text-sm">
                         <span className="pr-2 text-purple-500">•</span>
-                        {value.trim()}
+                        <div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div>
                       </p>
-                    ))}
+                    
                   </div>
                 </div>
-              ))}
+             
             </div>
           </section>
 
@@ -262,9 +152,9 @@ const [certs, setCerts] = useState([]);
           </section>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-            {certs.map((p) => (
+            
               <div
-                key={p.id_cb}
+                
                 className="group flex flex-col border border-white/20 hover:border-purple-600 transition-all duration-300 p-2"
                 style={{ background: "rgb(14, 14, 22)" }}
               >
@@ -272,31 +162,37 @@ const [certs, setCerts] = useState([]);
                   <div className="w-1/4">
                     <span className="inline-block border border-purple-900 text-xs tracking-widest uppercase font-medium px-2 py-1 rounded-lg bg-purple-500/20">
                       <img
-                        src={iconImages[`../assets/icons/${p.icon_cb}.png`]}
-                        alt={p.icon_cb}
+                        
+                       
                         className="inline-block w-6 h-6 m-2"
                       />
                     </span>
                   </div>
                   <div className="w-3/4">
                     <div className="text-white text-sm font-semibold leading-snug mb-1 group-hover:text-purple-200 transition-colors duration-200">
-                      {p.name_cb}
+                      <div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div>
                     </div>
-                    <div className="text-xs text-gray-500">{p.company_cb}</div>
+                    <div className="text-xs text-gray-500"><div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div></div>
                     <div className="text-xs font-mono mt-1 text-purple-500">
-                      {p.year_cb}
+                      <div className="h-5 w-48 bg-gray-800 rounded animate-pulse"></div>
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
+            
           </div>
         </section>
       </section>
 
       <Footer />
-    </>
-  );
+
+
+
+
+
+
+        </>
+    )
 }
 
-export default About;
+export default AboutLoading;

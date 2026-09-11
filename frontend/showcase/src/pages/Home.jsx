@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import { NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Footer from "../components/Footer";
+import { getAbouts, getCert, getProjects } from "../services/api";
 
 const iconImages = import.meta.glob("../assets/icons/*.png", {
   eager: true,
@@ -15,98 +16,51 @@ function Home() {
   const [order, setOrder] = useState(words);
   const [fade, setFade] = useState(true);
 
-  const projects = [
-    {
-      id_project: 4,
-      tech_project: "FULL STACK",
-      name_projects: "Enterprise Resource Portal",
-      stack_projects: "React, Node.js, PostgreSQ, LAWS",
-      year_project: "2024",
-      github_projects:
-        "https://github.com/groxascomp/PetF_PetFoodManager_React",
-      description_projects:
-        "A large-scale internal tool for Accenture clients featuring real-time data dashboards, role-based access, and automated reporting pipelines built with React, Node.js, and PostgreSQL.",
-    },
-    {
-      id_project: 2,
-      tech_project: "BACKEND",
-      name_projects: "DevTrack",
-      stack_projects: "React, Node.js, PostgreSQ, LAWS",
-      year_project: "2024",
-      github_projects:
-        "https://github.com/groxascomp/PetF_PetFoodManager_React",
-      description_projects:
-        "A large-scale internal tool for Accenture clients featuring real-time data dashboards, role-based access, and automated reporting pipelines built with React, Node.js, and PostgreSQL.",
-    },
-    {
-      id_project: 3,
-      tech_project: "IOT",
-      name_projects: "DevTrack FullStack",
-      stack_projects: "React, Node.js, PostgreSQ, LAWS",
-      year_project: "2024",
-      github_projects:
-        "https://github.com/groxascomp/PetF_PetFoodManager_React",
-      description_projects:
-        "A large-scale internal tool for Accenture clients featuring real-time data dashboards, role-based access, and automated reporting pipelines built with React, Node.js, and PostgreSQL.",
-    },
-    {
-      id_project: 5,
-      tech_project: "IOT",
-      name_projects: "DevTrAAAAack FullStack",
-      stack_projects: "React, Node.js, PostgreSQ, LAWS",
-      year_project: "2024",
-      github_projects:
-        "https://github.com/groxascomp/PetF_PetFoodManager_React",
-      description_projects:
-        "A large-scale internal tool for Accenture clients featuring real-time data dashboards, role-based access, and automated reporting pipelines built with React, Node.js, and PostgreSQL.",
-    },
-  ];
+  const [visible, setVisible] = useState(false);
 
-  const certBadge = [
-    {
-      id_cb: 1,
-      icon_cb: "fire",
-      name_cb: "AWS Certified Developer – Associate",
-      company_cb: "Google",
-      year_cb: "2024",
-    },
-    {
-      id_cb: 2,
-      icon_cb: "computer",
-      name_cb: "AWS Certified Developer – Associate",
-      company_cb: "Google",
-      year_cb: "2024",
-    },
-    {
-      id_cb: 3,
-      icon_cb: "fire",
-      name_cb: "AWS Certified Developer – Associate",
-      company_cb: "Google",
-      year_cb: "2024",
-    },
-    {
-      id_cb: 4,
-      icon_cb: "fire",
-      name_cb: "AWS Certified Developer – Associate",
-      company_cb: "Google",
-      year_cb: "2024",
-    },
-    {
-      id_cb: 5,
-      icon_cb: "fire",
-      name_cb: "AWS Certified Developer – Associate",
-      company_cb: "Google",
-      year_cb: "2024",
-    },
-    {
-      id_cb: 6,
-      icon_cb: "fire",
-      name_cb: "AWS Certified Developer – Associate",
-      company_cb: "Google",
-      year_cb: "2024",
-    },
-  ];
+useEffect(() => {
+  setVisible(true);
+}, []);
 
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    getProjects()
+      .then(setProjects)
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+
+  const [certs, setCerts] = useState([]);
+    const [loadingcert, setLoadingcert] = useState(true);
+    const [errorcert, setErrorcert] = useState("");
+  
+    useEffect(() => {
+      getCert()
+        .then(setCerts)
+        .catch((error) => setErrorcert(error.message))
+        .finally(() => setLoadingcert(false));
+    }, []);
+
+
+
+  const [about, setAbout] = useState(null);
+    const [loadingAbout, setLoadingAbout] = useState(true);
+    const [errorAbout, setErrorAbout] = useState("");
+    
+  
+    useEffect(() => {
+      getAbouts()
+        .then((aboutData) => {
+          setAbout(aboutData[0] || {});
+        })
+        .catch((error) => setErrorAbout(error.message))
+        .finally(() => setLoadingAbout(false));
+    }, []);
+      
   useEffect(() => {
     const interval = setInterval(() => {
       setFade(false);
@@ -120,6 +74,14 @@ function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  if (loadingcert || loading || loadingAbout) {
+    return <></>;
+  }
+
+  if (errorcert || error || errorAbout) {
+    return <></>;
+  }
+
   return (
     <>
       <Hero />
@@ -129,8 +91,12 @@ function Home() {
         </p>
       </section>
       <section>
-        <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-center">
-          I am Gian Exequiel <span className="text-purple-500">Roxas</span>{" "}
+        <h1
+          className={`text-5xl md:text-7xl font-bold leading-tight mb-6 text-center transition-opacity duration-1000 ${
+            visible ? "opacity-100" : "opacity-0"
+          }`}
+            >
+          I am {about.firstname_about} <span className="text-purple-500">{about.lastname_about}</span>
         </h1>
       </section>
 
@@ -156,12 +122,12 @@ function Home() {
 
       <section>
         <h1 className="text-gray-400 text-base mb-12 flex justify-center">
-          25 years old Software Developer at
+          {about.age_about} years old, {about.currentrole_about} at
           <span className="text-purple-500 pl-1.5 pr-1.5 font-semibold tracking-wider uppercase">
             {" "}
-            ACCENTURE{" "}
+            {about.currentcompany_about}{" "}
           </span>{" "}
-          Philippines
+          
         </h1>
       </section>
 
@@ -247,7 +213,7 @@ function Home() {
       </section>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 pl-60 pr-60 pb-20">
-        {certBadge.map((p) => (
+        {certs.map((p) => (
           <div
             key={p.id_cb}
             className="group flex flex-col border border-white/20 hover:border-purple-600 transition-all duration-300 p-2"

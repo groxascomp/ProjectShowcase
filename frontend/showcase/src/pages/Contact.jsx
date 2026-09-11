@@ -8,18 +8,42 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../components/Footer";
+import { getAbouts, getLinks } from "../services/api";
+import { useEffect, useState } from "react";
+import ContactError from "../components/errorpage/ContactError";
+import ContactLoading from "../components/loading/ContactLoading";
 
 function Contact() {
-  const links = [
-    {
-      email_abouts: "gianroxas@gmail.com",
-      github_links: "https://github.com/dummyuser",
-      linkedin_links: "https://www.linkedin.com/in/dummyuser",
-      facebook_links: "https://www.facebook.com/dummyuser",
-      instagram_links: "https://www.instagram.com/dummyuser",
-      location_abouts: "Pasig City, Metro Manila",
-    },
-  ];
+  const [links, setLinks] = useState(null);
+  const [about, setAbout] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    Promise.all([getLinks(), getAbouts()])
+      .then(([linkData, aboutData]) => {
+        setLinks(linkData[0] || {});
+        setAbout(aboutData[0] || {});
+      })
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+        <ContactLoading />
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <ContactError />
+      </>
+    );
+  }
 
   return (
     <>
@@ -44,7 +68,7 @@ function Contact() {
 
             <div className="grid grid-cols-2 gap-4 pl-30 pr-30">
               <a
-                href={`mailto:${links[0].email_abouts}`}
+                href={`mailto:${about.email_about}`}
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
               >
                 <div className="flex h-12 w-12 items-center justify-center border border-white/20 bg-[#07080e] text-purple-400 text-xl shrink-0">
@@ -56,13 +80,14 @@ function Contact() {
                     EMAIL
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {links[0].email_abouts}
+                    {about.email_about}
                   </div>
                 </div>
               </a>
 
+              {/* LINKED */}
               <a
-                href={links[0].linkedin_links}
+                href={links.linkedin_links}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
@@ -76,13 +101,14 @@ function Contact() {
                     LINKEDIN
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    linkedin.com/in/dummyuser
+                    {links.linkedin_links}
                   </div>
                 </div>
               </a>
 
+              {/* GITHUB */}
               <a
-                href={links[0].github_links}
+                href={links.github_links}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
@@ -96,13 +122,14 @@ function Contact() {
                     GITHUB
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    github.com/dummyuser
+                    {links.github_links}
                   </div>
                 </div>
               </a>
 
+              {/* Facebook */}
               <a
-                href={links[0].facebook_links}
+                href={links.facebook_links}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
@@ -116,13 +143,14 @@ function Contact() {
                     FACEBOOK
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    facebook.com/dummyuser
+                    {links.facebook_links}
                   </div>
                 </div>
               </a>
 
+              {/* Instgram */}
               <a
-                href={links[0].instagram_links}
+                href={links.instagram_links}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
@@ -136,13 +164,14 @@ function Contact() {
                     INSTAGRAM
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    @dummyuser
+                    {links.instagram_links}
                   </div>
                 </div>
               </a>
 
+              {/* Location */}
               <a
-                href="https://maps.google.com/?q=Pasig+City+Metro+Manila"
+                href={`https://maps.google.com/?q=${encodeURIComponent(about.location_about || "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
@@ -156,7 +185,7 @@ function Contact() {
                     LOCATION
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {links[0].location_abouts}
+                    {about.location_about}
                   </div>
                 </div>
               </a>
