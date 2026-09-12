@@ -8,6 +8,8 @@ import {
   getExperience,
   getProjects,
 } from "../services/api";
+import ErrorComponents from "../components/ErrorComponents";
+import LoadingComponents from "../components/LoadingComponents";
 
 const AppDataContext = createContext(null);
 
@@ -51,16 +53,26 @@ export function AppDataProvider({ children }) {
         setError(err.message || "Failed to load application data.");
       })
       .finally(() => {
+      // delay hiding loader by 2 seconds
+      setTimeout(() => {
         setLoading(false);
-      });
-  }, []);
+      }, 2000);
+    });
+}, []);
 
   if (loading) {
-    return <div className="text-white">Loading...</div>;
+    return <>
+      <LoadingComponents/>
+    
+    </>
   }
 
   if (error) {
-    return <div className="text-red-400">{error}</div>;
+    return <>
+      <div className="pt-30"></div>
+      <ErrorComponents/>
+    
+    </>;
   }
 
   return (

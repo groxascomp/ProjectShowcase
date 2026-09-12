@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
+import LoadingComponents from "../components/LoadingComponents";
 import AboutError from "../components/errorpage/AboutError";
 import ContactError from "../components/errorpage/ContactError";
 import ExperienceError from "../components/errorpage/ExperienceError";
@@ -10,13 +11,14 @@ import ContactLoading from "../components/loading/ContactLoading";
 import HeroLoading from "../components/loading/HeroLoading";
 import HomeLoading from "../components/loading/HomeLoading";
 import ProjectsLoading from "../components/loading/ProjectsLoading";
+import { Quantum } from 'ldrs/react'
+import 'ldrs/react/Quantum.css'
+
 
 function TestLoading() {
-  return (
-    <>
-      <HeroLoading/>
-    </>
-  );
+  return (<>
+    <LoadingComponents/>
+  </>)
 }
 
 export default TestLoading;

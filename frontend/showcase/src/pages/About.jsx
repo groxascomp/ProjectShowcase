@@ -1,16 +1,7 @@
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import profileImage from "../assets/1x1/1x1.JPG";
-import {
-  getAbouts,
-  getCert,
-  getEducations,
-  getLinks,
-  getSkills,
-} from "../services/api";
-import { useEffect, useState } from "react";
-import AboutError from "../components/errorpage/AboutError";
-import AboutLoading from "../components/loading/AboutLoading";
+import { useAppData } from "../context/AppDataContext";
 
 const iconImages = import.meta.glob("../assets/icons/*.png", {
   eager: true,
@@ -20,94 +11,19 @@ const iconImages = import.meta.glob("../assets/icons/*.png", {
 
 function About() {
   
-  
-  const [about, setAbout] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  
+  const {
+  abouts = [],
+  educations = [],
+  links = [],
+  skills: skillsList = [],
+  certs = [],
+  } = useAppData();
 
-  useEffect(() => {
-    getAbouts()
-      .then((aboutData) => {
-        setAbout(aboutData[0] || {});
-      })
-      .catch((error) => setError(error.message))
-      .finally(() => setLoading(false));
-  }, []);
-
-  const [edu, setEdu] = useState({});
-  const [loadingedu, setLoadingedu] = useState(true);
-  const [erroredu, setErroredu] = useState("");
-
-  useEffect(() => {
-  getEducations()
-    .then((eduData) => {
-      const lastEducation = eduData[eduData.length - 1];
-      setEdu(lastEducation || {});
-    })
-    .catch((error) => setErroredu(error.message))
-    .finally(() => setLoadingedu(false));
-}, []);
-
-  const [link, setLink] = useState({});
-  const [loadinglink, setLoadinglink] = useState(true);
-  const [errorlink, setErrorlink] = useState("");
-  const [skills, setSkills] = useState({});
-  const [loadingskills, setLoadingskills] = useState(true);
-  const [errorskills, setErrorskills] = useState("");
-
-useEffect(() => {
-  getLinks()
-    .then((linkData) => {
-      const lastLink = linkData[linkData.length - 1];
-      setLink(lastLink || {});
-    })
-    .catch((error) => setErrorlink(error.message))
-    .finally(() => setLoadinglink(false));
-}, []);
-
-  useEffect(() => {
-    getSkills()
-      .then((skillsData) => {
-        setSkills(skillsData[0] || {});
-      })
-      .catch((error) => setErrorskills(error.message))
-      .finally(() => setLoadingskills(false));
-  }, []);
-
-
-
-  
-const [certs, setCerts] = useState([]);
-  const [loadingcert, setLoadingcert] = useState(true);
-  const [errorcert, setErrorcert] = useState("");
-
-  useEffect(() => {
-    getCert()
-      .then(setCerts)
-      .catch((error) => setErrorcert(error.message))
-      .finally(() => setLoadingcert(false));
-  }, []);
+  const about = abouts[0] || {};
+  const edu = educations[0] || {};
+  const link = links[0] || {};
+  const skills = skillsList[0] || {};
     
-
-
-
-
-  if (loading || loadingedu || loadinglink || loadingskills || loadingcert) {
-    return (
-      <>
-        <AboutLoading/>
-      </>
-    );
-  }
-
-  if (error || erroredu || errorlink || errorskills || errorcert) {
-    return (
-      <>
-        <AboutError/>
-      </>
-    );
-  }
 
 
 

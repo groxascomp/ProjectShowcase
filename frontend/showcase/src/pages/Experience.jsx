@@ -1,52 +1,22 @@
-import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
-import { getEducations, getExperience } from "../services/api";
-import ExperienceLoading from "../components/loading/ExperienceLoading";
-import ExperienceError from "../components/errorpage/ExperienceError";
+import { useAppData } from "../context/AppDataContext";
 
 function Experience() {
-  const [exp, setExp] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const {
+  educations = [],
+  experiences = [],
+  } = useAppData();
 
-  useEffect(() => {
-    getExperience()
-      .then(setExp)
-      .catch((error) => setError(error.message))
-      .finally(() => setLoading(false));
-  }, []);
+  const orderedEducation = [...educations].reverse();
+  const orderedExperience = [...experiences].reverse();
+  
+  
+  
 
-  const orderedExperiences = [...exp].reverse();
+  
 
-  const [edu, setEdu] = useState([]);
-  const [loadingEdu, setLoadingEdu] = useState(true);
-  const [errorEdu, setErrorEdu] = useState("");
-
-  useEffect(() => {
-    getEducations()
-      .then(setEdu)
-      .catch((error) => setErrorEdu(error.message))
-      .finally(() => setLoadingEdu(false));
-  }, []);
-
-  const orderedEducation = [...edu].reverse();
-
-  if (loading || loadingEdu) {
-    return (
-      <>
-        <ExperienceLoading />
-      </>
-    );
-  }
-
-  if (error || errorEdu) {
-    return (
-      <>
-        <ExperienceError />
-      </>
-    );
-  }
+  
 
   return (
     <>
@@ -67,7 +37,7 @@ function Experience() {
               className="absolute bottom-3 left-2 top-3 w-px bg-white/10"
             />
 
-            {orderedExperiences.map((p) => (
+            {orderedExperience.map((p) => (
               <article key={p.id_exp} className="relative pb-16 last:pb-0">
                 <span
                   aria-hidden="true"

@@ -9,9 +9,7 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 
 import { Link } from "react-router-dom";
-import { getAbouts, getLinks } from "../services/api";
-import { useEffect, useState } from "react";
-import HeroLoading from "./loading/HeroLoading";
+import { useAppData } from "../context/AppDataContext";
 
 
 
@@ -19,6 +17,14 @@ import HeroLoading from "./loading/HeroLoading";
 
 
 function Hero() {
+
+  const {
+  abouts = [],
+  links = [],
+  } = useAppData();
+
+  const about = abouts[0] || {};
+  const link = links[0] || {};
 
   
 
@@ -30,11 +36,11 @@ function Hero() {
           <Link to="/home" className="flex items-center gap-3">
             <div>
               <h1 className="text-white font-semibold text-base tracking-wide">
-                Gian Exequiel G. Roxas
+                {about.firstname_about} {about.lastname_about}
               </h1>
               <p className="text-purple-500 font-normal text-sm tracking-wide">
                 {" "}
-                Associate SoftWare Engineer
+                {about.currentrole_about}
               </p>
             </div>
           </Link>
@@ -85,25 +91,25 @@ function Hero() {
         </nav>
 
         <div className="hero-right flex gap-3">
-          <a href="https://github.com/groxascomp" target="_blank" rel="noreferrer">
+          <a href={link.github_links} target="_blank" rel="noreferrer">
             <FontAwesomeIcon
               icon={faGithub}
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"
             />
           </a>
-          <a href="https://linkedin.com/in/exe0107g" target="_blank" rel="noreferrer">
+          <a href={link.linkedin_links} target="_blank" rel="noreferrer">
             <FontAwesomeIcon
               icon={faLinkedin}
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"
             />
           </a>
-          <a href="https://web.facebook.com/gianexequiel" target="_blank" rel="noreferrer">
+          <a href={link.facebook_links} target="_blank" rel="noreferrer">
             <FontAwesomeIcon
               icon={faFacebook}
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"
             />
           </a>
-          <a href="https://www.instagram.com/exequielroxas" target="_blank" rel="noreferrer">
+          <a href={link.instagram_links} target="_blank" rel="noreferrer">
             <FontAwesomeIcon
               icon={faInstagram}
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"

@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
-import { getProjects } from "../services/api";
-import ErrorComponents from "../components/ErrorComponents";
-import ProjectError from "../components/errorpage/ProjectsError";
-import ProjectsLoading from "../components/loading/ProjectsLoading";
+
+import { useAppData } from "../context/AppDataContext";
 
 function Projects() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  
+  const {
+  projects = [],
+  } = useAppData();
 
-  useEffect(() => {
-    getProjects()
-      .then(setProjects)
-      .catch((error) => setError(error.message))
-      .finally(() => setLoading(false));
-  }, []);
+
 
   const [active, setActive] = useState("ALL");
   const categories = ["ALL", "Full Stack", "FrontEnd", "BackEnd", "IOT"];
@@ -26,21 +20,7 @@ function Projects() {
       ? projects
       : projects.filter((p) => p.tech_project === active);
 
-  if (loading) {
-    return (
-      <>
-        <ProjectsLoading />
-      </>
-    );
-  }
-
-  if (error) {
-    return (
-      <>
-        <ProjectError />
-      </>
-    );
-  }
+  
 
   return (
     <>

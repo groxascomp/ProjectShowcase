@@ -8,42 +8,19 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../components/Footer";
-import { getAbouts, getLinks } from "../services/api";
-import { useEffect, useState } from "react";
-import ContactError from "../components/errorpage/ContactError";
-import ContactLoading from "../components/loading/ContactLoading";
+import { useAppData } from "../context/AppDataContext";
+
 
 function Contact() {
-  const [links, setLinks] = useState(null);
-  const [about, setAbout] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    Promise.all([getLinks(), getAbouts()])
-      .then(([linkData, aboutData]) => {
-        setLinks(linkData[0] || {});
-        setAbout(aboutData[0] || {});
-      })
-      .catch((error) => setError(error.message))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <>
-        <ContactLoading />
-      </>
-    );
-  }
-
-  if (error) {
-    return (
-      <>
-        <ContactError />
-      </>
-    );
-  }
+  const {
+    abouts = [],
+    links = [],
+    skills: skillsList = [],
+    } = useAppData();
+  
+    const about = abouts[0] || {};
+    const link = links[0] || {};
+    const skills = skillsList[0] || {};
 
   return (
     <>
@@ -87,7 +64,7 @@ function Contact() {
 
               {/* LINKED */}
               <a
-                href={links.linkedin_links}
+                href={link.linkedin_links}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
@@ -101,14 +78,14 @@ function Contact() {
                     LINKEDIN
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {links.linkedin_links}
+                    {link.linkedin_links}
                   </div>
                 </div>
               </a>
 
               {/* GITHUB */}
               <a
-                href={links.github_links}
+                href={link.github_links}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
@@ -122,14 +99,14 @@ function Contact() {
                     GITHUB
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {links.github_links}
+                    {link.github_links}
                   </div>
                 </div>
               </a>
 
               {/* Facebook */}
               <a
-                href={links.facebook_links}
+                href={link.facebook_links}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
@@ -143,14 +120,14 @@ function Contact() {
                     FACEBOOK
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {links.facebook_links}
+                    {link.facebook_links}
                   </div>
                 </div>
               </a>
 
               {/* Instgram */}
               <a
-                href={links.instagram_links}
+                href={link.instagram_links}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border border-white/20 bg-[#0b0d18]/90 p-4 md:p-5 h-25 transition-all duration-300 hover:border-purple-500"
@@ -164,7 +141,7 @@ function Contact() {
                     INSTAGRAM
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {links.instagram_links}
+                    {link.instagram_links}
                   </div>
                 </div>
               </a>

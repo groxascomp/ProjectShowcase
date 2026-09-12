@@ -3,9 +3,7 @@ import Hero from "../components/Hero";
 import { NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Footer from "../components/Footer";
-import { getAbouts, getCert, getProjects } from "../services/api";
-import HomeError from "../components/errorpage/HomeError";
-import HomeLoading from "../components/loading/HomeLoading";
+import { useAppData } from "../context/AppDataContext";
 
 const iconImages = import.meta.glob("../assets/icons/*.png", {
   eager: true,
@@ -24,45 +22,16 @@ useEffect(() => {
   setVisible(true);
 }, []);
 
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    getProjects()
-      .then(setProjects)
-      .catch((error) => setError(error.message))
-      .finally(() => setLoading(false));
-  }, []);
-
-
-  const [certs, setCerts] = useState([]);
-    const [loadingcert, setLoadingcert] = useState(true);
-    const [errorcert, setErrorcert] = useState("");
+  const {
+  abouts = [],
+  projects = [],
+  certs = [],
   
-    useEffect(() => {
-      getCert()
-        .then(setCerts)
-        .catch((error) => setErrorcert(error.message))
-        .finally(() => setLoadingcert(false));
-    }, []);
+  } = useAppData();
 
-
-
-  const [about, setAbout] = useState(null);
-    const [loadingAbout, setLoadingAbout] = useState(true);
-    const [errorAbout, setErrorAbout] = useState("");
-    
+  const about = abouts[0] || {};
   
-    useEffect(() => {
-      getAbouts()
-        .then((aboutData) => {
-          setAbout(aboutData[0] || {});
-        })
-        .catch((error) => setErrorAbout(error.message))
-        .finally(() => setLoadingAbout(false));
-    }, []);
-      
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setFade(false);
@@ -76,17 +45,6 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, []);
 
-  if (loadingcert || loading || loadingAbout) {
-    return <>
-      <HomeLoading/>
-    </>;
-  }
-
-  if (errorcert || error || errorAbout) {
-    return <>
-      <HomeError/>
-    </>;
-  }
 
   return (
     <>
