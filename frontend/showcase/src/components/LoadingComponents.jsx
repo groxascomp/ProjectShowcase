@@ -6,14 +6,13 @@ function LoadingComponents({ onFinish }) {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // trigger fade-out before unmount
     const timer = setTimeout(() => {
       setFadeOut(true);
-      // wait for animation to finish before calling onFinish
+    
       setTimeout(() => {
         if (onFinish) onFinish();
-      }, 500); // match transition duration
-    }, 1500); // keep loader visible for 2s
+      }, 500); 
+    }, 1500); 
 
     return () => clearTimeout(timer);
   }, [onFinish]);

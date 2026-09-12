@@ -1,11 +1,11 @@
-import Footer from "../components/Footer";
-import Hero from "../components/Hero";
+import Footer from "../../components/Footer";
+import Hero from "../../components/Hero";
 import { NavLink } from "react-router-dom";
 
 function Sorry() {
   return (
     <>
-      <Hero />
+      <Hero/>
       <div className="flex justify-center pt-14 pb-6 ">
         <div className="flex h-28 w-28 items-center justify-center rounded-full border-4 border-purple-500 text-5xl text-purple-500">
           !

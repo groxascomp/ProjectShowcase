@@ -78,7 +78,7 @@ function Contact() {
                     LINKEDIN
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {link.linkedin_links}
+                    /{link.linkedin_links.split("/").pop()}
                   </div>
                 </div>
               </a>
@@ -99,7 +99,7 @@ function Contact() {
                     GITHUB
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {link.github_links}
+                    /{link.github_links.split("/").pop()}
                   </div>
                 </div>
               </a>
@@ -120,7 +120,7 @@ function Contact() {
                     FACEBOOK
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {link.facebook_links}
+                    /{link.facebook_links.split("/").pop()}
                   </div>
                 </div>
               </a>
@@ -141,7 +141,7 @@ function Contact() {
                     INSTAGRAM
                   </div>
                   <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                    {link.instagram_links}
+                    /{link.instagram_links.split("/").pop()}
                   </div>
                 </div>
               </a>

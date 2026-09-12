@@ -55,7 +55,7 @@ function Projects() {
               ))}
             </div>
 
-            {/*--------------------------------------- */}
+
 
             <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProjects.map((p) => (
@@ -96,17 +96,14 @@ function Projects() {
                     ))}
                   </div>
 
-                  <div>
+                  
+                  <div className="mt-auto">
                     <a
                       href={
-                        p.github_projects === "not available"
-                          ? "/sorry"
-                          : p.github_projects
+                        p.github_projects === "not available" ? "/sorry" : p.github_projects
                       }
                       target={
-                        p.github_projects === "not available"
-                          ? undefined
-                          : "_blank"
+                        p.github_projects === "not available" ? undefined : "_blank"
                       }
                       rel={
                         p.github_projects === "not available"

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Hero from "../components/Hero";
+import Hero from "../../components/Hero";
 import { NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import Footer from "../components/Footer";
-import { useAppData } from "../context/AppDataContext";
+import Footer from "../../components/Footer";
+import { useAppData } from "../../context/AppDataContext";
 
 const iconImages = import.meta.glob("../assets/icons/*.png", {
   eager: true,
@@ -11,7 +11,7 @@ const iconImages = import.meta.glob("../assets/icons/*.png", {
   query: "?url",
 });
 
-function Home() {
+function Intro() {
   const words = ["THINKER", "ENGINEER", "REINVENTOR"];
   const [order, setOrder] = useState(words);
   const [fade, setFade] = useState(true);
@@ -56,12 +56,11 @@ useEffect(() => {
       </section>
       <section>
         <h1
-          className={`text-5xl md:text-7xl font-bold leading-tight mb-6 text-center ${
+          className={`text-5xl md:text-7xl font-bold leading-tight mb-6 text-center transition-opacity duration-1000 ${
             visible ? "opacity-100" : "opacity-0"
           }`}
-        >
-          I am {about.firstname_about}{" "}
-          <span className="text-purple-500">{about.lastname_about}</span>
+            >
+          I am {about.firstname_about} <span className="text-purple-500">{about.lastname_about}</span>
         </h1>
       </section>
 
@@ -213,4 +212,4 @@ useEffect(() => {
   );
 }
 
-export default Home;
+export default Intro;

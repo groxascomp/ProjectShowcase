@@ -12,10 +12,6 @@ import { Link } from "react-router-dom";
 import { useAppData } from "../context/AppDataContext";
 
 
-
-
-
-
 function Hero() {
 
   const {
@@ -25,8 +21,6 @@ function Hero() {
 
   const about = abouts[0] || {};
   const link = links[0] || {};
-
-  
 
 
   return (
@@ -38,7 +32,7 @@ function Hero() {
               <h1 className="text-white font-semibold text-base tracking-wide">
                 {about.firstname_about} {about.lastname_about}
               </h1>
-              <p className="text-purple-500 font-normal text-sm tracking-wide">
+              <p className="text-purple-500 font-normal text-xs tracking-wide">
                 {" "}
                 {about.currentrole_about}
               </p>
@@ -115,12 +109,12 @@ function Hero() {
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"
             />
           </a>
-          <a href="#info">
+          <NavLink to="/maintenancepage">
             <FontAwesomeIcon
               icon={faInfoCircle}
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"
             />
-          </a>
+          </NavLink>
         </div>
       </header>
     </>

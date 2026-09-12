@@ -69,7 +69,7 @@ export function AppDataProvider({ children }) {
 
   if (error) {
     return <>
-      <div className="pt-30"></div>
+      <div className="pt-55"></div>
       <ErrorComponents/>
     
     </>;

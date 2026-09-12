@@ -20,7 +20,7 @@ function About() {
   } = useAppData();
 
   const about = abouts[0] || {};
-  const edu = educations[0] || {};
+  const edu = educations[1] || {};
   const link = links[0] || {};
   const skills = skillsList[0] || {};
     

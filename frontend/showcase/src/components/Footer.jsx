@@ -8,8 +8,22 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useAppData } from "../context/AppDataContext";
 
 function Footer() {
+
+  const {
+    abouts = [],
+    links = [],
+    } = useAppData();
+  
+    const about = abouts[0] || {};
+    const link = links[0] || {};
+  
+
+
+
+
   return (
     <>
       <footer className="border-t border-white/10 md:px-16 py-6 pl-10 bg-[rgb(10,10,15)]">
@@ -18,11 +32,11 @@ function Footer() {
             <Link to="/home" className="flex items-center gap-3">
               <div>
                 <h1 className="text-white font-semibold text-sm tracking-wide">
-                  Gian Exequiel G. Roxas
+                  {about.firstname_about} {about.lastname_about}
                 </h1>
                 <p className="text-purple-500 font-normal text-xs tracking-wide">
                   {" "}
-                  Software Engineer
+                  {about.currentrole_about}
                 </p>
               </div>
             </Link>
@@ -73,36 +87,36 @@ function Footer() {
           </nav>
 
           <div className="hero-right flex gap-3">
-            <a href="https://github.com/yourusername">
+            <a href={link.github_links} target="_blank" rel="noreferrer">
               <FontAwesomeIcon
                 icon={faGithub}
                 className="text-lg font-medium transition-colors duration-200 text-gray-400 hover:text-white"
               />
             </a>
-            <a href="https://linkedin.com/in/yourusername">
+            <a href={link.linkedin_links} target="_blank" rel="noreferrer">
               <FontAwesomeIcon
                 icon={faLinkedin}
                 className="text-lg font-medium transition-colors duration-200 text-gray-400 hover:text-white"
               />
             </a>
-            <a href="https://facebook.com/yourusername">
+            <a href={link.facebook_links} target="_blank" rel="noreferrer">
               <FontAwesomeIcon
                 icon={faFacebook}
                 className="text-lg font-medium transition-colors duration-200 text-gray-400 hover:text-white"
               />
             </a>
-            <a href="https://instagram.com/yourusername">
+            <a href={link.instagram_links} target="_blank" rel="noreferrer">
               <FontAwesomeIcon
                 icon={faInstagram}
                 className="text-lg font-medium transition-colors duration-200 text-gray-400 hover:text-white"
               />
             </a>
-            <a href="#info">
+            <NavLink to="/maintenancepage">
               <FontAwesomeIcon
                 icon={faInfoCircle}
                 className="text-lg font-medium transition-colors duration-200 text-gray-400 hover:text-white"
               />
-            </a>
+            </NavLink>
           </div>
         </section>
       </footer>

@@ -11,13 +11,6 @@ function Experience() {
   const orderedEducation = [...educations].reverse();
   const orderedExperience = [...experiences].reverse();
   
-  
-  
-
-  
-
-  
-
   return (
     <>
       <Hero />
