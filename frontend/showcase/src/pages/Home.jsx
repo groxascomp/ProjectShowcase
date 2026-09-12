@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Footer from "../components/Footer";
 import { getAbouts, getCert, getProjects } from "../services/api";
+import HomeError from "../components/errorpage/HomeError";
+import HomeLoading from "../components/loading/HomeLoading";
 
 const iconImages = import.meta.glob("../assets/icons/*.png", {
   eager: true,
@@ -75,11 +77,15 @@ useEffect(() => {
   }, []);
 
   if (loadingcert || loading || loadingAbout) {
-    return <></>;
+    return <>
+      <HomeLoading/>
+    </>;
   }
 
   if (errorcert || error || errorAbout) {
-    return <></>;
+    return <>
+      <HomeError/>
+    </>;
   }
 
   return (

@@ -9,33 +9,15 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 
 import { Link } from "react-router-dom";
-import { getAbouts, getLinks } from "../services/api";
-import { useEffect, useState } from "react";
-import HeroLoading from "./loading/HeroLoading";
 
-
-
-
-
-
-function Hero() {
-
-  
-
-
-  return (
-    <>
-      <header className="flex justify-between items-center px-8 py-6 bg-transparent rounded-xl">
+function HeroLoading(){
+    return(
+        <>
+        <header className="flex justify-between items-center px-8 py-6 bg-transparent rounded-xl">
         <div className="hero-left">
           <Link to="/home" className="flex items-center gap-3">
             <div>
-              <h1 className="text-white font-semibold text-base tracking-wide">
-                Gian Exequiel G. Roxas
-              </h1>
-              <p className="text-purple-500 font-normal text-sm tracking-wide">
-                {" "}
-                Associate SoftWare Engineer
-              </p>
+              <div className="h-11 w-47 bg-gray-800 rounded animate-pulse"></div>
             </div>
           </Link>
         </div>
@@ -85,25 +67,25 @@ function Hero() {
         </nav>
 
         <div className="hero-right flex gap-3">
-          <a href="https://github.com/groxascomp" target="_blank" rel="noreferrer">
+          <a >
             <FontAwesomeIcon
               icon={faGithub}
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"
             />
           </a>
-          <a href="https://linkedin.com/in/exe0107g" target="_blank" rel="noreferrer">
+          <a >
             <FontAwesomeIcon
               icon={faLinkedin}
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"
             />
           </a>
-          <a href="https://web.facebook.com/gianexequiel" target="_blank" rel="noreferrer">
+          <a >
             <FontAwesomeIcon
               icon={faFacebook}
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"
             />
           </a>
-          <a href="https://www.instagram.com/exequielroxas" target="_blank" rel="noreferrer">
+          <a >
             <FontAwesomeIcon
               icon={faInstagram}
               className="text-xl font-medium transition-colors duration-200 text-gray-400 hover:text-white"
@@ -117,8 +99,14 @@ function Hero() {
           </a>
         </div>
       </header>
-    </>
-  );
+        
+        
+        </>
+
+    )
+
+
+
 }
 
-export default Hero;
+export default HeroLoading
