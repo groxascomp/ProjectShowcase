@@ -9,6 +9,7 @@ import Sorry from "./pages/secondarypage/Sorry";
 import TestLoading from "./pages/TestLoading";
 import Intro from "./pages/secondarypage/Intro";
 import MaintenancePage from "./pages/secondarypage/MaintenancePage";
+import Whyyouhere from "./pages/secondarypage/Whyyouhere";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/sorry" element={<Sorry />} />
       <Route path="/testloading" element={<TestLoading />} />
       <Route path="/maintenancepage" element={<MaintenancePage/>} />
+      <Route path="*" element={<Whyyouhere/>} />
       
     </Routes>
   );
